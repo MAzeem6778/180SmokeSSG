@@ -307,9 +307,8 @@ export async function getStaticPaths() {
         body: JSON.stringify({
             query: `
                 {
-                    products(filter:{category_id:{eq:"35"}}){
+                    products(pageSize:3000 filter:{}){
                         items {
-                            id
                             url_key
                         }
                     }
