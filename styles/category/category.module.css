@@ -1,0 +1,18 @@
+.test{
+    background-color: black;
+}
+
+
+
+.filterSearchHeader {
+    text-align: center;
+  }
+  
+  .filterSearchHeader .heading {
+    font-size: larger;
+    border: #729300;
+    background-color: #729300;
+    border-style: solid;
+    width: 80%;
+    margin-left: 10%;
+  }

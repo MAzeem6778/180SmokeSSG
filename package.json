@@ -1,0 +1,18 @@
+{
+  "name": "180smoke",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && next export",
+    "start": "next start"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "next": "9.5.5",
+    "react": "17.0.1",
+    "react-alice-carousel": "^2.0.2",
+    "react-bootstrap": "^1.4.0",
+    "react-dom": "17.0.1"
+  }
+}
