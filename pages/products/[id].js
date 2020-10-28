@@ -256,80 +256,80 @@ export async function getStaticProps({ params }) {
 }
 
 
-export async function getStaticPaths() {
-    const arr = ["35", "17", "46", "14", "20"]
-    let paths = []
-
-    arr.forEach(async (cate) => {
-
-        const res = await fetch("https://180smokejsproxy.sprintech.digital/180_proxy", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-            body: JSON.stringify({
-                query: `
-                    {
-                        products(filter:{category_id:{eq:${cate}}}){
-                            items {
-                                id
-                                url_key
-                            }
-                        }
-                      }
-                    `,
-            }),
-        }).catch(error => console.log(error));
-        console.log('paths ', paths);
-        const _products = await res.json();
-        _products &&
-            _products.data &&
-            _products.data.products &&
-            _products.data.products.items &&
-            _products.data.products.items.forEach((_p) => paths.push(`/products/${_p.url_key}`))
-        console.log('paths ', paths);
-    });
-
-    return { paths, fallback: false }
-
-}
-
 // export async function getStaticPaths() {
-
-//     // Call an external API endpoint to get posts
-//     const res = await fetch("https://180smokejsproxy.sprintech.digital/180_proxy", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//             Accept: "application/json",
-//         },
-//         body: JSON.stringify({
-//             query: `
-//                 {
-//                     products(filter:{category_id:{eq:"35"}}){
-//                         items {
-//                             id
-//                             url_key
-//                         }
-//                     }
-//                   }
-//                 `,
-//         }),
-//     }).catch(error => console.log(error));
-//     const _products = await res.json();
-//     // Get the paths we want to pre-render based on posts
+//     const arr = ["35", "17", "46", "14", "20"]
 //     let paths = []
-//     _products &&
-//         _products.data &&
-//         _products.data.products &&
-//         _products.data.products.items &&
-//         _products.data.products.items.forEach((_p) => paths.push(`/products/${_p.url_key}`))
 
-//     // We'll pre-render only these paths at build time.
-//     // { fallback: false } means other routes should 404.
+//     arr.forEach(async (cate) => {
+
+//         const res = await fetch("https://180smokejsproxy.sprintech.digital/180_proxy", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 Accept: "application/json",
+//             },
+//             body: JSON.stringify({
+//                 query: `
+//                     {
+//                         products(filter:{category_id:{eq:${cate}}}){
+//                             items {
+//                                 id
+//                                 url_key
+//                             }
+//                         }
+//                       }
+//                     `,
+//             }),
+//         }).catch(error => console.log(error));
+//         console.log('paths ', paths);
+//         const _products = await res.json();
+//         _products &&
+//             _products.data &&
+//             _products.data.products &&
+//             _products.data.products.items &&
+//             _products.data.products.items.forEach((_p) => paths.push(`/products/${_p.url_key}`))
+//         console.log('paths ', paths);
+//     });
+
 //     return { paths, fallback: false }
+
 // }
+
+export async function getStaticPaths() {
+
+    // Call an external API endpoint to get posts
+    const res = await fetch("https://180smokejsproxy.sprintech.digital/180_proxy", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+        body: JSON.stringify({
+            query: `
+                {
+                    products(filter:{category_id:{eq:"35"}}){
+                        items {
+                            id
+                            url_key
+                        }
+                    }
+                  }
+                `,
+        }),
+    }).catch(error => console.log(error));
+    const _products = await res.json();
+    // Get the paths we want to pre-render based on posts
+    let paths = []
+    _products &&
+        _products.data &&
+        _products.data.products &&
+        _products.data.products.items &&
+        _products.data.products.items.forEach((_p) => paths.push(`/products/${_p.url_key}`))
+
+    // We'll pre-render only these paths at build time.
+    // { fallback: false } means other routes should 404.
+    return { paths, fallback: false }
+}
 
 
 
